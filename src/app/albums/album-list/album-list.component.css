@@ -1,0 +1,6 @@
+/*.album-item:nth-child(1) {
+  clear:left;
+}*/
+.album-item:nth-child(6n+1) {
+   clear: left;
+ }

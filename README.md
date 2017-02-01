@@ -29,3 +29,19 @@ Run `ng github-pages:deploy` to deploy to GitHub Pages.
 ## Further help
 
 To get more help on the `angular-cli` use `ng help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+
+This app is a demo that simulates a music store.  It allows a user to:
+-list all artists (paged)
+    -album art wall view
+    -details view
+    -small album art view
+-list all albums (paged)
+-search artists
+-search albums
+-view albums for artists
+-view songs for album
+-select an album to download (purchase)
+
+-select a song to download

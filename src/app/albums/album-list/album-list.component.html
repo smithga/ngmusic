@@ -1,0 +1,14 @@
+<p>
+  Albums
+</p>
+<br/>
+<app-pager (pageClicked)="onPageClicked($event)" [pageSize]=30 [itemCount]="albumCount"></app-pager>
+<br/>
+<div class="row">
+  <div *ngIf="!loading">
+    <div class="album-item col-lg-2" *ngFor="let album of albums">
+      <app-album [album]="album"></app-album>
+    </div>
+  </div>
+  <app-loading *ngIf="loading" height="500"></app-loading>
+</div>

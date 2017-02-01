@@ -1,0 +1,31 @@
+<div>
+  <div class="container">
+    <div class="text-center">
+      <ul class="pagination">
+
+
+        <li [ngClass]="{disabled:currentPage === 1}">
+          <a (click)="setPage(1)">First</a>
+        </li>
+        <li [ngClass]="{disabled:currentPage === 1}">
+          <a (click)="setPage(currentPage - 1)">Previous</a>
+        </li>
+
+        <li *ngFor="let page of pageNumbers" [ngClass]="{active:currentPage === page}">
+          <a (click)="setPage(page)">{{page}}</a>
+        </li>
+
+        <!--<li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+    <a (click)="setPage(page)">{{page}}</a>
+  </li>-->
+
+        <li [ngClass]="{disabled:currentPage === totalPages}">
+          <a (click)="setPage(currentPage + 1)">Next</a>
+        </li>
+        <li [ngClass]="{disabled:currentPage === totalPages}">
+          <a (click)="setPage(totalPages)">Last</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
