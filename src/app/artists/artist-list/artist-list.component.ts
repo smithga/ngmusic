@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { ArtistService} from '../shared/artist.service';
+import { ArtistService } from '../shared/artist.service';
+import { Artist } from '../shared/artist';
 
 @Component({
   selector: 'app-artist-list',
@@ -8,17 +10,26 @@ import { ArtistService} from '../shared/artist.service';
   styleUrls: ['./artist-list.component.css']
 })
 export class ArtistListComponent implements OnInit {
-  
-  private artists;
+  @Input() artists: Array<Artist>;
+
+  private loading: boolean = false;
+  private artistCount: number;
 
   constructor(
-    private artistService: ArtistService
+    private artistService: ArtistService,
+    private router: Router
   ) { }
 
   ngOnInit() {
-      this.artistService.getAll().subscribe(result => {
-      this.artists = result;
-    });
+    // this.loadArtists(1);
+  }
+
+  onPageClicked(page) {
+    // this.loadArtists(page);
+  }
+
+  clickArtist(artist_id: number) {
+    this.router.navigate(['artists', artist_id]);
   }
 
 }

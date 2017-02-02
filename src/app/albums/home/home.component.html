@@ -1,0 +1,10 @@
+<div class="text-center">
+  <h1>Albums</h1>
+</div>
+<br/>
+<app-pager (pageClicked)="onPageClicked($event)" [pageSize]=30 [itemCount]="albumService.albumCount"></app-pager>
+<br/>
+<div class="row">  
+  <app-album-list [albums]="albums" (albumClicked)="onAlbumClicked($event)"></app-album-list>
+  <app-loading *ngIf="albumService.loading" [height]="500" [message]="'Loading Albums...'"></app-loading>
+</div>

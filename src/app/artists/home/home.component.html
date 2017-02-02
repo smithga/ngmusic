@@ -1,0 +1,12 @@
+<div class="text-center">
+  <h1>Artists</h1>
+</div>
+<br/>
+<app-pager (pageClicked)="onPageClicked($event)" [pageSize]=30 [itemCount]="artistService.artistCount"></app-pager>
+<br/>
+<div class="row">
+  <div *ngIf="!loading">
+    <app-artist-list [artists]="artists"></app-artist-list>
+    <app-loading *ngIf="artistService.loading" [height]="500" [message]="'Loading Artists...'"></app-loading>
+  </div>
+</div>

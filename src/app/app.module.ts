@@ -9,6 +9,7 @@ import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
 import { ArtistsModule } from './artists/artists.module';
 import { AlbumsModule } from './albums/albums.module';
+import { SongsModule } from './songs/songs.module';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './core/home/home.component';

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { AlbumService } from '../shared/album.service';
 import { Album } from '../shared/album';
@@ -9,29 +9,20 @@ import { Album } from '../shared/album';
   styleUrls: ['./album-list.component.css']
 })
 export class AlbumListComponent implements OnInit {
-  private loading: boolean = false;
-  private albums: Array<Album>;
-  private albumCount: number;
+  @Input() albums: Array<Album>;
+  @Output() albumClicked: EventEmitter<number> = new EventEmitter<number>();
 
-  constructor(
-    private albumService: AlbumService
-  ) { }
+  private albumCount: number;
+  private filter: string;
+
+  constructor() { }
 
   ngOnInit() {
-    this.loadAlbums(1);
+
   }
 
-  onPageClicked(page) {
-    this.loadAlbums(page);
-  }
-
-  loadAlbums(page) {
-    this.loading = true;
-    this.albumService.getAll(page, 30).subscribe(result => {
-      this.albums = result;
-      this.loading = false;
-      this.albumCount = this.albumService.count;
-    });
+  onAlbumClicked(albumId: number) {
+    this.albumClicked.emit(albumId);
   }
 
 }

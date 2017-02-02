@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://cwdgarys2/music/api'
+  apiUrl: 'http://cwdgarys2/music/odata'
 };

@@ -45,3 +45,29 @@ This app is a demo that simulates a music store.  It allows a user to:
 -select an album to download (purchase)
 
 -select a song to download
+
+
+
+
+REST service
+------------
+The rest service is build using OData so we can use commands as follows to shape the result:
+
+get by id:
+http://localhost/music/odata/albums(5)
+
+count:
+http://localhost/music/odata/albums/$count
+http://localhost/music/odata/albums/$count?$filter=genre%20eq%20'rock'
+
+page:
+http://localhost/music/odata/albums?$skip=25&$top=25
+
+order by:
+http://localhost/music/odata/albums?$top=25&$orderby=title
+
+expand:
+http://localhost/music/odata/albums?$expand=Artist
+http://localhost/music/odata/songs(5)?$expand=Album
+http://localhost/music/odata/songs(5)?$expand=Album($expand=Artist)2:27 PM 2/2/2017
+

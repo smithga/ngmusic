@@ -1,14 +1,16 @@
 import { Routes, RouterModule } from '@angular/router';
 
 import { MainLayoutComponent } from '../layouts';
-import { ArtistListComponent } from './artist-list/artist-list.component';
+import { ArtistDetailsComponent } from './artist-details/artist-details.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
     {
         path: 'artists',
         component: MainLayoutComponent,
         children: [
-            { path: '', component: ArtistListComponent, data: { title: 'Artists' } }
+            { path: '', component: HomeComponent, data: { title: 'Artists' } },
+            { path: ':artist_id', component: ArtistDetailsComponent, data: { title: 'Artist Details'}}
         ]
     }
 ];

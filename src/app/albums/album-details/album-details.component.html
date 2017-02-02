@@ -1,0 +1,17 @@
+
+<div class="col-lg-12">
+  <h1>{{album?.Artist?.name}}</h1>
+  <h2>{{album?.title}} ({{album?.year}})</h2>
+  <h4>{{album?.genre}}</h4>
+</div>
+
+<div class="col-lg-2">
+  <img [src]="'data:image/jpg;base64,'+album.cover" class="album-thumbnail" />
+</div>
+<div class="col-lg-10">
+  <ul>
+    <li *ngFor="let song of songs" class="song-list">
+      {{song.track}} - {{song.title}}
+    </li>
+  </ul>
+</div>

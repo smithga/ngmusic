@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import {Album} from '../shared/album';
 
@@ -9,10 +9,15 @@ import {Album} from '../shared/album';
 })
 export class AlbumComponent implements OnInit {
   @Input() album: Album;
+  @Output() albumClicked: EventEmitter<number> = new EventEmitter<number>();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  clicked() {
+    this.albumClicked.emit(this.album.album_id);
   }
 
 }

@@ -1,0 +1,6 @@
+a {
+    cursor: pointer;
+}
+.artost-item:nth-child(4n+1) {
+   clear: left;
+ }
