@@ -14,9 +14,11 @@
 			<form [formGroup]="loginGroup" (ngSubmit)="login()">
 				<div class="form-group">
 					<input type="text" class="form-control" formControlName="username">
+					<label>HINT: a@a.com</label>
 				</div>
 				<div class="form-group">
 					<input type="password" class="form-control" formControlName="password">
+					<label>HINT: password</label>
 				</div>
 				<button type="submit" id="btnLogin" name="btnLogin" class="btn btn-primary btn-block m-b" [disabled]="!loginGroup.valid">Login</button>
 				<br/>
