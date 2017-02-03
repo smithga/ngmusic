@@ -4,7 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { authRouting } from './auth.routing';
 import { AuthService } from './shared/auth.service';
+import { AuthGuardService } from './shared/auth-guard.service';
 import { LoginComponent } from './login/login.component';
+import { LogoffDirective } from './directives/logoff.directive';
 
 @NgModule({
     imports: [
@@ -14,13 +16,16 @@ import { LoginComponent } from './login/login.component';
         authRouting
     ],
     declarations: [
-        LoginComponent
+        LoginComponent,
+        LogoffDirective
     ],
     exports: [
-        LoginComponent
+        LoginComponent,
+        LogoffDirective
     ],
     providers: [
-        AuthService
+        AuthService,
+        AuthGuardService
     ]
 })
 export class AuthModule { }

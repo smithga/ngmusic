@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { coreRouting } from './core.routing';
 import { PagerComponent } from './pager/pager.component';
 import { LoadingComponent } from './loading/loading.component';
+import { BackComponent } from './back/back.component';
 
 @NgModule({
     imports: [
@@ -12,11 +13,13 @@ import { LoadingComponent } from './loading/loading.component';
     ],
     declarations: [
         PagerComponent,
-        LoadingComponent
+        LoadingComponent,
+        BackComponent
     ],
     exports: [
         PagerComponent,
-        LoadingComponent
+        LoadingComponent,
+        BackComponent
     ],
     bootstrap: []
 })

@@ -7,11 +7,26 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class AuthService {
-    
+    public authenticated: boolean = false;
+
     constructor(private http: Http) { }
 
     public login(username: string, password: string): boolean {
-        return (username === 'a@a.com' && password === 'password');
+        this.username = username;
+        this.authenticated = (username === 'a@a.com' && password === 'password');
+        return this.authenticated;
     }
 
+    public logoff() {
+        this.authenticated = false;
+    }
+
+    public get username(): string {
+        return window.localStorage.getItem('username') || '';
+    }
+
+    public set username(value: string) {
+        window.localStorage.setItem('username', value);
+    }
+    
 }
