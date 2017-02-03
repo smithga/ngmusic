@@ -7,13 +7,13 @@ import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angu
 })
 export class PagerComponent implements OnInit, OnChanges {
   private pageNumbers;
-  @Input() itemCount: number = 0;
-  @Input() pageSize: number = 48;
-  @Input() currentPage: number = 1;
+  @Input() itemCount = 0;
+  @Input() pageSize = 48;
+  @Input() public currentPage = 1;
 
   @Output() pageClicked: EventEmitter<number> = new EventEmitter<number>();
 
-  private totalPages: number = 1;
+  public totalPages = 1;
 
   constructor() { }
 
@@ -29,7 +29,7 @@ export class PagerComponent implements OnInit, OnChanges {
     if (page < 1 || page > this.totalPages) {
       return;
     }
-    if (page == this.currentPage) {
+    if (page === this.currentPage) {
       return;
     }
     this.currentPage = page;

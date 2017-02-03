@@ -31,22 +31,7 @@ Run `ng github-pages:deploy` to deploy to GitHub Pages.
 To get more help on the `angular-cli` use `ng help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 
-
-This app is a demo that simulates a music store.  It allows a user to:
--list all artists (paged)
-    -album art wall view
-    -details view
-    -small album art view
--list all albums (paged)
--search artists
--search albums
--view albums for artists
--view songs for album
--select an album to download (purchase)
-
--select a song to download
-
-
+This app is a demo that simulates a music store.  It was built to demonstrate the awesome sauce that is Angular2!
 
 
 REST service
@@ -58,6 +43,8 @@ http://localhost/music/odata/albums(5)
 
 count:
 http://localhost/music/odata/albums/$count
+
+Count with filter:
 http://localhost/music/odata/albums/$count?$filter=genre%20eq%20'rock'
 
 page:
@@ -69,5 +56,4 @@ http://localhost/music/odata/albums?$top=25&$orderby=title
 expand:
 http://localhost/music/odata/albums?$expand=Artist
 http://localhost/music/odata/songs(5)?$expand=Album
-http://localhost/music/odata/songs(5)?$expand=Album($expand=Artist)2:27 PM 2/2/2017
-
+http://localhost/music/odata/songs(5)?$expand=Album($expand=Artist)

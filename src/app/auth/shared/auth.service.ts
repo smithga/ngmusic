@@ -7,7 +7,7 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class AuthService {
-    public authenticated: boolean = false;
+    public authenticated = false;
 
     constructor(private http: Http) { }
 
@@ -28,5 +28,5 @@ export class AuthService {
     public set username(value: string) {
         window.localStorage.setItem('username', value);
     }
-    
+
 }

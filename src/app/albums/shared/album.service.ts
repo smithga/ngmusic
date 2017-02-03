@@ -9,37 +9,31 @@ import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class AlbumService {
-    public loading: boolean = false;
+    public loading = false;
     public albumCount: number;
 
-    constructor(private http: Http) {
+    constructor(
+        private http: Http
+    ) { }
 
-    }
-
-    public getCount(filter: string) {
-        let odataFilter = filter ? `?&$filter=contains(title,'${filter}') or contains(Artist/name,'${filter}')` : '';
-        let url = `${environment.apiUrl}/albums/$count${odataFilter}`;
-        return this.http
-            .get(url)
-            .map(res => res.json());
-    }
-
-    public getAll(filter: string, page: number = 1, pageSize: number = 48) {
+    public getAll(filter: string, page = 1, pageSize = 48) {
         this.loading = true;
-        this.getCount(filter).subscribe(count => this.albumCount = count);
-        let odataFilter = filter ? `$filter=contains(title,'${filter}')  or contains(Artist/name,'${filter}')` : '';
-        let url = `${environment.apiUrl}/albums?${odataFilter}&$expand=Artist&$skip=${(page - 1) * pageSize}&$top=${pageSize}`;
+        const odataFilter = filter ? `$filter=contains(title,'${filter}')  or contains(Artist/name,'${filter}')` : '';
+        const paging = `&$skip=${(page - 1) * pageSize}&$top=${pageSize}`;
+        const url = `${environment.apiUrl}/albums?${odataFilter}&$expand=Artist${paging}&$count=true`;
         return this.http
             .get(url)
             .map(res => {
                 this.loading = false;
-                return res.json().value;
+                const result = res.json();
+                this.albumCount = result['@odata.count'];
+                return result.value;
             });
     }
 
     public get(albumId: number) {
         this.loading = true;
-        let url = `${environment.apiUrl}/albums(${albumId})?$expand=Artist`;
+        const url = `${environment.apiUrl}/albums(${albumId})?$expand=Artist`;
         return this.http
             .get(url)
             .map(res => {
@@ -48,9 +42,9 @@ export class AlbumService {
             });
     }
 
-    public getForArtist(artistId: number, page: number = 1, pageSize: number = 48) {
+    public getForArtist(artistId: number, page = 1, pageSize = 48) {
         this.loading = true;
-        let url = `${environment.apiUrl}/albums?$expand=Artist&$filter=artist_id eq ${artistId}`;
+        const url = `${environment.apiUrl}/albums?$expand=Artist&$filter=artist_id eq ${artistId}`;
         return this.http
             .get(url)
             .map(res => {

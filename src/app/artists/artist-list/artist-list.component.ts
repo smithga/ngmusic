@@ -12,7 +12,7 @@ import { Artist } from '../shared/artist';
 export class ArtistListComponent implements OnInit {
   @Input() artists: Array<Artist>;
 
-  private loading: boolean = false;
+  private loading = false;
   private artistCount: number;
 
   constructor(

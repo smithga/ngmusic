@@ -12,8 +12,8 @@ import { Artist } from '../shared/artist';
   styleUrls: ['./artist-details.component.css']
 })
 export class ArtistDetailsComponent implements OnInit {
-  private albums: Array<Album>;
-  private artist: Artist;
+  public albums: Array<Album>;
+  public artist: Artist;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -24,7 +24,7 @@ export class ArtistDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
-      let artistId = params['artist_id'];
+      const artistId = params['artist_id'];
       this.loadAlbums(artistId);
       this.loadArtist(artistId);
     });

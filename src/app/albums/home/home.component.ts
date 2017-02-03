@@ -10,12 +10,12 @@ import { Album } from '../shared/album';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  private currentPage: number = 1;
-  private albums: Array<Album>;
+  private currentPage = 1;
+  public albums: Array<Album>;
   private filter: string;
 
   constructor(
-    private albumService: AlbumService,
+    public albumService: AlbumService,
     private router: Router
   ) { }
 
@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
 
   @HostListener('document:keyup', ['$event'])
   onKeyUp(ev: KeyboardEvent) {
-    if (ev.srcElement.id === "search") {
+    if (ev.srcElement.id === 'search') {
       this.filter = (ev.srcElement as HTMLInputElement).value;
       this.loadAlbums(1);
     }

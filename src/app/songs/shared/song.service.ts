@@ -9,13 +9,13 @@ import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class SongService {
-    private loading: boolean = false;
+    private loading = false;
 
     constructor(private http: Http) { }
 
     public getForAlbum(album_id: number) {
         this.loading = true;
-        let url = `${environment.apiUrl}/songs?$orderby=track&$filter=album_id eq ${album_id}`;
+        const url = `${environment.apiUrl}/songs?$orderby=track&$filter=album_id eq ${album_id}`;
         return this.http
             .get(url)
             .map(res => {

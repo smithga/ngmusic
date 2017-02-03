@@ -6,8 +6,8 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./loading.component.css']
 })
 export class LoadingComponent implements OnInit {
-  @Input() height: number = 400;
-  @Input() message: string = 'Loading...';
+  @Input() height = 400;
+  @Input() message = 'Loading...';
 
   constructor() { }
 

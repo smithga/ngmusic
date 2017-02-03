@@ -11,7 +11,7 @@ export class LogoffDirective {
     constructor(
         private router: Router,
         private authService: AuthService
-    ){}
+    ) { }
 
     @HostListener('click', [])
     clicked() {

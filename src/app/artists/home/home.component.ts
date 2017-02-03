@@ -9,12 +9,12 @@ import { Artist } from '../shared/artist';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  private currentPage: number = 1;
-  private artists: Array<Artist>;
-  private filter: string = '';
+  private currentPage = 1;
+  public artists: Array<Artist>;
+  private filter = '';
 
   constructor(
-    private artistService: ArtistService
+    public artistService: ArtistService
   ) { }
 
   ngOnInit() {
@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
 
   @HostListener('document:keyup', ['$event'])
   onKeyUp(ev: KeyboardEvent) {
-    if (ev.srcElement.id === "search") {
+    if (ev.srcElement.id === 'search') {
       this.filter = (ev.srcElement as HTMLInputElement).value;
       this.loadArtists(1);
     }

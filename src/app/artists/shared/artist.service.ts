@@ -9,40 +9,34 @@ import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class ArtistService {
-    public loading: boolean = false;
+    public loading = false;
     public artistCount: number;
 
     constructor(private http: Http) { }
 
-    public getCount(filter: string) {
-        let odataFilter = filter ? `?$filter=contains(name,'${filter}')` : '';
-        let url = `${environment.apiUrl}/artists/$count${odataFilter}`;
-        return this.http
-            .get(url)
-            .map(res => res.json());
-    }
-
-    public getAll(filter: string, page: number = 1, pageSize: number = 50) {
+    public getAll(filter: string, page = 1, pageSize = 50) {
         this.loading = true;
-        this.getCount(filter).subscribe(count => this.artistCount = count);
-        let odataFilter = filter ? `$filter=contains(name,'${filter}')` : '';
-        let url = `${environment.apiUrl}/artists?${odataFilter}&$orderby=name&$skip=${(page - 1) * pageSize}&$top=${pageSize}`;
+        const odataFilter = filter ? `$filter=contains(name,'${filter}')` : '';
+        const paging = `&$skip=${(page - 1) * pageSize}&$top=${pageSize}`;
+        const url = `${environment.apiUrl}/artists?${odataFilter}&$orderby=name${paging}&$count=true`;
         return this.http
             .get(url)
             .map(res => {
                 this.loading = false;
-                return res.json().value
+                const result = res.json();
+                this.artistCount = result['@odata.count'];
+                return result.value;
             });
     }
 
     public get(artistId: number) {
         this.loading = true;
-        let url = `${environment.apiUrl}/artists(${artistId})`;
+        const url = `${environment.apiUrl}/artists(${artistId})`;
         return this.http
             .get(url)
             .map(res => {
                 this.loading = false;
-                return res.json()
+                return res.json();
             });
     }
 }

@@ -12,8 +12,8 @@ import { Song } from '../../songs/shared/song';
   styleUrls: ['./album-details.component.css']
 })
 export class AlbumDetailsComponent implements OnInit {
-  private album: Album = new Album();
-  private songs: Array<Song>;
+  public album: Album = new Album();
+  public songs: Array<Song>;
 
   constructor(
     private albumService: AlbumService,

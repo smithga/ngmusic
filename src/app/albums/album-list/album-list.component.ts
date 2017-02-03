@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { AlbumService } from '../shared/album.service';
 import { Album } from '../shared/album';
 
 @Component({
