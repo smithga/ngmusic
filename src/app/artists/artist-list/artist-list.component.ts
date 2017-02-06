@@ -28,7 +28,7 @@ export class ArtistListComponent implements OnInit {
     // this.loadArtists(page);
   }
 
-  clickArtist(artist_id: number) {
+  artistClicked(artist_id: number) {
     this.router.navigate(['artists', artist_id]);
   }
 

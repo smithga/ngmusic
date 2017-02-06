@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
 
   loadArtists(page: number) {
     this.artists = [];
-    this.artistService.getAll(this.filter, page, 30).subscribe(result => {
+    this.artistService.getAll(this.filter, page, 32).subscribe(result => {
       this.artists = result;
     });
   }

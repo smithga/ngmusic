@@ -3,8 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 
 import { AlbumService } from '../shared/album.service';
 import { Album } from '../shared/album';
-import { SongService } from '../../songs/shared/song.service';
-import { Song } from '../../songs/shared/song';
 
 @Component({
   selector: 'app-album-details',
@@ -13,25 +11,23 @@ import { Song } from '../../songs/shared/song';
 })
 export class AlbumDetailsComponent implements OnInit {
   public album: Album = new Album();
-  public songs: Array<Song>;
-
+  public albumId: number;
+  
   constructor(
     private albumService: AlbumService,
-    private songService: SongService,
+    
     private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
-      this.loadAlbum(params['albumId']);
+      this.albumId = params['albumId'];
+      this.loadAlbum();
     });
   }
 
-  loadAlbum(albumId: number) {
-    this.songService.getForAlbum(albumId).subscribe(result => {
-      this.songs = result;
-    });
-    this.albumService.get(albumId).subscribe(result => {
+  loadAlbum() {
+    this.albumService.get(this.albumId).subscribe(result => {
       this.album = result;
     });
   }

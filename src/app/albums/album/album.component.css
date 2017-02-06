@@ -1,22 +1,18 @@
 .album-thumbnail {
     width: 64px;
     height: 64px;
-    margin:0 auto;
+    margin: 0 auto;
 }
 
 .col-lg-1:nth-child(11n+1){
-   clear: left;
- }
+    clear: left;
+}
 
- .title {
-     font-weight: bold;
- }
+.title {
+    font-weight: bold;
+}
 
- .artist {
-
- }
-
- .album {
-     margin-top: 10px;
-     cursor: pointer;
- }
+.album {
+    margin-top: 10px;
+    cursor: pointer;
+}

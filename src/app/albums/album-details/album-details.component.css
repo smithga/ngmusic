@@ -1,7 +1,5 @@
 .album-thumbnail {
     width: 200px;
     height: 200px;
-}
-.song-list {
-    list-style-type: none;
+    margin: 0 auto;
 }

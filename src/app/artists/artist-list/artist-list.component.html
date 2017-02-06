@@ -1,4 +1,4 @@
-<div class="artist-item col-lg-3" *ngFor="let artist of artists">
-  <a (click)="clickArtist(artist.artist_id)">{{artist.name}}</a>
+<div class="artist-item col-lg-3 col-md-3 col-sm-3 padding" *ngFor="let artist of artists">
+  <app-artist [artist]="artist" (artistClicked)="artistClicked($event)"></app-artist>
   <!--{{artist.name}}-->
 </div>

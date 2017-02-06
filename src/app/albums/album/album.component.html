@@ -2,5 +2,5 @@
   <img class="media-object album-thumbnail" [src]="'data:image/jpg;base64,'+album.cover" />
   <span class="title">{{album.title}}</span>
   <br/>
-  <span class="artist">{{album.Artist.name}}</span>
+  <span class="artist">{{album.Artist.name | uppercase}}</span>
 </div>

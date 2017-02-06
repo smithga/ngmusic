@@ -1,3 +1,3 @@
-<div class="album-item col-lg-2" *ngFor="let album of albums">
+<div class="album-item col-lg-2 col-md-2 col-sm-2" *ngFor="let album of albums">
   <app-album [album]="album" (albumClicked)="onAlbumClicked($event)"></app-album>
 </div>

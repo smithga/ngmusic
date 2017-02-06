@@ -9,6 +9,7 @@ import { artistsRouting } from './artists.routing';
 import { ArtistListComponent } from './artist-list/artist-list.component';
 import { ArtistService} from './shared/artist.service';
 import { ArtistDetailsComponent } from './artist-details/artist-details.component';
+import { ArtistComponent } from './artist/artist.component';
 import { HomeComponent } from './home/home.component';
 
 @NgModule({
@@ -23,6 +24,7 @@ import { HomeComponent } from './home/home.component';
     declarations: [
         ArtistListComponent,
         ArtistDetailsComponent,
+        ArtistComponent,
         HomeComponent
     ],
     exports: [
