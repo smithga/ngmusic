@@ -17,4 +17,4 @@ const routes: Routes = [
     }
 ];
 
-export const albumsRouting = RouterModule.forRoot(routes);
+export const albumsRouting = RouterModule.forChild(routes);

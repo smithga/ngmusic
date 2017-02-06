@@ -17,4 +17,4 @@ const routes: Routes = [
     }
 ];
 
-export const artistsRouting = RouterModule.forRoot(routes);
+export const artistsRouting = RouterModule.forChild(routes);

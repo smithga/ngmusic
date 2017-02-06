@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   private currentPage = 1;
   public albums: Array<Album>;
   private filter: string;
+  private searchTimeout;
 
   constructor(
     public albumService: AlbumService,
@@ -38,8 +39,11 @@ export class HomeComponent implements OnInit {
   @HostListener('document:keyup', ['$event'])
   onKeyUp(ev: KeyboardEvent) {
     if (ev.srcElement.id === 'search') {
-      this.filter = (ev.srcElement as HTMLInputElement).value;
-      this.loadAlbums(1);
+      clearTimeout(this.searchTimeout);
+      this.searchTimeout = setTimeout(() => {
+        this.filter = (ev.srcElement as HTMLInputElement).value;
+        this.loadAlbums(1);
+      }, 500);
     }
   }
 
