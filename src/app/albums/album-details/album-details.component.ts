@@ -12,10 +12,10 @@ import { Album } from '../shared/album';
 export class AlbumDetailsComponent implements OnInit {
   public album: Album = new Album();
   public albumId: number;
-  
+
   constructor(
     private albumService: AlbumService,
-    
+
     private activatedRoute: ActivatedRoute
   ) { }
 

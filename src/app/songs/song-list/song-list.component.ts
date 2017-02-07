@@ -10,7 +10,7 @@ import { Song } from '../../songs/shared/song';
 })
 export class SongListComponent implements OnInit {
   @Input() albumId: number;
-  
+
   public songs: Array<Song>;
 
   constructor(

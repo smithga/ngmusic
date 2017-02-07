@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import { environment } from '../../../environments/environment';
+import { Artist } from './artist';
 
 @Injectable()
 export class ArtistService {
@@ -14,7 +15,7 @@ export class ArtistService {
 
     constructor(private http: Http) { }
 
-    public getAll(filter: string, page = 1, pageSize = 50) {
+    public getAll(filter: string, page = 1, pageSize = 50): Observable<Array<Artist>> {
         this.loading = true;
         const odataFilter = filter ? `$filter=contains(name,'${filter}')` : '';
         const paging = `&$skip=${(page - 1) * pageSize}&$top=${pageSize}`;
@@ -29,7 +30,7 @@ export class ArtistService {
             });
     }
 
-    public get(artistId: number) {
+    public get(artistId: number): Observable<Artist> {
         this.loading = true;
         const url = `${environment.apiUrl}/artists(${artistId})`;
         return this.http

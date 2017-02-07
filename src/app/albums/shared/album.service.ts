@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import { environment } from '../../../environments/environment';
+import { Album } from './album';
 
 @Injectable()
 export class AlbumService {
@@ -16,7 +17,7 @@ export class AlbumService {
         private http: Http
     ) { }
 
-    public getAll(filter: string, page = 1, pageSize = 48) {
+    public getAll(filter: string, page = 1, pageSize = 48): Observable<Array<Album>> {
         this.loading = true;
         const odataFilter = filter ? `$filter=contains(title,'${filter}')  or contains(Artist/name,'${filter}')` : '';
         const paging = `&$skip=${(page - 1) * pageSize}&$top=${pageSize}`;
@@ -31,7 +32,7 @@ export class AlbumService {
             });
     }
 
-    public get(albumId: number) {
+    public get(albumId: number): Observable<Album> {
         this.loading = true;
         const url = `${environment.apiUrl}/albums(${albumId})?$expand=Artist`;
         return this.http
@@ -42,7 +43,7 @@ export class AlbumService {
             });
     }
 
-    public getForArtist(artistId: number, page = 1, pageSize = 48) {
+    public getForArtist(artistId: number, page = 1, pageSize = 48): Observable<Array<Album>>  {
         this.loading = true;
         const url = `${environment.apiUrl}/albums?$expand=Artist&$filter=artist_id eq ${artistId}`;
         return this.http

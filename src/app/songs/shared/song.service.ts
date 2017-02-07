@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import { environment } from '../../../environments/environment';
+import { Song } from './song';
 
 @Injectable()
 export class SongService {
@@ -13,7 +14,7 @@ export class SongService {
 
     constructor(private http: Http) { }
 
-    public getForAlbum(album_id: number) {
+    public getForAlbum(album_id: number): Observable<Array<Song>> {
         this.loading = true;
         const url = `${environment.apiUrl}/songs?$orderby=track&$filter=album_id eq ${album_id}`;
         return this.http
