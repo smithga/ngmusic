@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 // Modules
 import { AuthModule } from './auth/auth.module';
@@ -34,7 +35,11 @@ import { MainLayoutComponent } from './layouts/main-layout/main-layout.component
     ArtistsModule,
     AlbumsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

@@ -6,7 +6,6 @@ import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angu
   styleUrls: ['./pager.component.css']
 })
 export class PagerComponent implements OnInit, OnChanges {
-  private pageNumbers;
   @Input() itemCount = 0;
   @Input() pageSize = 48;
   @Input() public currentPage = 1;
@@ -14,6 +13,7 @@ export class PagerComponent implements OnInit, OnChanges {
   @Output() pageClicked: EventEmitter<number> = new EventEmitter<number>();
 
   public totalPages = 1;
+  private pageNumbers;
 
   constructor() { }
 
