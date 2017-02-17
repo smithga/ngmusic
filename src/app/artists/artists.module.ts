@@ -10,7 +10,7 @@ import { ArtistListComponent } from './artist-list/artist-list.component';
 import { ArtistService} from './shared/artist.service';
 import { ArtistDetailsComponent } from './artist-details/artist-details.component';
 import { ArtistComponent } from './artist/artist.component';
-import { HomeComponent } from './home/home.component';
+import { ArtistHomeComponent } from './artist-home/artist-home.component';
 
 @NgModule({
     imports: [
@@ -25,10 +25,13 @@ import { HomeComponent } from './home/home.component';
         ArtistListComponent,
         ArtistDetailsComponent,
         ArtistComponent,
-        HomeComponent
+        ArtistHomeComponent
     ],
     exports: [
-        ArtistListComponent
+        ArtistListComponent,
+        ArtistDetailsComponent,
+        ArtistComponent,
+        ArtistHomeComponent
     ],
     providers: [
         ArtistService

@@ -9,7 +9,7 @@ import { albumsRouting } from './albums.routing';
 import { AlbumListComponent } from './album-list/album-list.component';
 import { AlbumService} from './shared/album.service';
 import { AlbumComponent } from './album/album.component';
-import { HomeComponent } from './home/home.component';
+import { AlbumHomeComponent } from './album-home/album-home.component';
 import { AlbumDetailsComponent } from './album-details/album-details.component';
 
 @NgModule({
@@ -24,11 +24,14 @@ import { AlbumDetailsComponent } from './album-details/album-details.component';
     declarations: [
         AlbumListComponent,
         AlbumComponent,
-        HomeComponent,
+        AlbumHomeComponent,
         AlbumDetailsComponent
     ],
     exports: [
-        AlbumListComponent
+        AlbumListComponent,
+        AlbumComponent,
+        AlbumHomeComponent,
+        AlbumDetailsComponent
     ],
     providers: [
         AlbumService

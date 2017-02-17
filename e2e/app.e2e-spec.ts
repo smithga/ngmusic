@@ -1,14 +1,14 @@
-import { MusicPage } from './app.po';
+// import { MusicPage } from './app.po';
 
-describe('music App', function() {
-  let page: MusicPage;
+// describe('music App', function() {
+//   let page: MusicPage;
 
-  beforeEach(() => {
-    page = new MusicPage();
-  });
+//   beforeEach(() => {
+//     page = new MusicPage();
+//   });
 
-  it('should display message saying app works', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
-  });
-});
+//   it('should display message saying app works', () => {
+//     page.navigateTo();
+//     expect(page.getParagraphText()).toEqual('app works!');
+//   });
+// });

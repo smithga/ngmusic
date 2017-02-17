@@ -5,11 +5,11 @@ import { AlbumService } from '../shared/album.service';
 import { Album } from '../shared/album';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-album-home',
+  templateUrl: './album-home.component.html',
+  styleUrls: ['./album-home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class AlbumHomeComponent implements OnInit {
   private currentPage = 1;
   public albums: Array<Album>;
   private filter: string;

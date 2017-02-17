@@ -9,23 +9,23 @@
 			<br/>
 			<br/>
 			<br/>
-			<h1>Login</h1>
+			<h1 class="login-text">Login</h1>
 
 			<form [formGroup]="loginGroup" (ngSubmit)="login()">
 				<div class="form-group">
-					<input type="text" class="form-control" formControlName="username">
+					<input type="text" class="form-control" formControlName="username" name="username">
 					<label>HINT: a@a.com</label>
 				</div>
 				<div class="form-group">
-					<input type="password" class="form-control" formControlName="password">
+					<input type="password" class="form-control" formControlName="password" name="password">
 					<label>HINT: password</label>
 				</div>
 				<button type="submit" id="btnLogin" name="btnLogin" class="btn btn-primary btn-block m-b" [disabled]="!loginGroup.valid">Login</button>
 				<br/>
-				<div *ngIf="errorMessage">
+				<div>
 					<h2 class="text-danger">
-						<span class="glyphicon glyphicon-info-sign fa-2x"></span>
-						{{errorMessage}}
+						<span class="glyphicon glyphicon-info-sign fa-2x" *ngIf="errorMessage"></span>
+						<span id="error-message"> {{errorMessage}}</span>
 					</h2>
 				</div>
 			</form>

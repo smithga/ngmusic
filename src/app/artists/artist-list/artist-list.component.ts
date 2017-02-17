@@ -21,11 +21,7 @@ export class ArtistListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.loadArtists(1);
-  }
 
-  onPageClicked(page) {
-    // this.loadArtists(page);
   }
 
   artistClicked(artist_id: number) {

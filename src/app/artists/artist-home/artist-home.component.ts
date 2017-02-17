@@ -4,11 +4,11 @@ import { ArtistService } from '../shared/artist.service';
 import { Artist } from '../shared/artist';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-artist-home',
+  templateUrl: './artist-home.component.html',
+  styleUrls: ['./artist-home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class ArtistHomeComponent implements OnInit {
   private currentPage = 1;
   public artists: Array<Artist>;
   private filter = '';

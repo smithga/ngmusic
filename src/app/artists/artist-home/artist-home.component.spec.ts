@@ -7,14 +7,14 @@ import { Http, BaseRequestOptions, XHRBackend, Response, ResponseOptions } from 
 import { MockBackend, MockConnection } from '@angular/http/testing';
 
 import { CoreModule } from '../../core/core.module';
-import { HomeComponent } from './home.component';
+import { ArtistHomeComponent } from './artist-home.component';
 import { MainLayoutComponent } from '../../layouts/main-layout/main-layout.component';
 import { PagerComponent } from '../../core/pager/pager.component';
 import { LoadingComponent } from '../../core/loading/loading.component';
-import { AlbumListComponent } from '../album-list/album-list.component';
-import { AlbumComponent } from '../album/album.component';
-import { AlbumService } from '../shared/album.service';
-import { Album } from '../shared/album';
+import { ArtistListComponent } from '../artist-list/artist-list.component';
+import { ArtistComponent } from '../artist/artist.component';
+import { ArtistService } from '../shared/artist.service';
+import { Artist } from '../shared/artist';
 
 export class RouterMock {
   public url: string;
@@ -25,9 +25,9 @@ export class RouterMock {
   }
 }
 
-describe('HomeComponent', () => {
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
+describe('ArtistHomeComponent', () => {
+  let component: ArtistHomeComponent;
+  let fixture: ComponentFixture<ArtistHomeComponent>;
   let mockBackend: MockBackend;
 
   beforeEach(async(() => {
@@ -37,14 +37,14 @@ describe('HomeComponent', () => {
       ],
       declarations: [
         MainLayoutComponent,
-        HomeComponent,
+        ArtistHomeComponent,
         PagerComponent,
         LoadingComponent,
-        AlbumListComponent,
-        AlbumComponent
+        ArtistListComponent,
+        ArtistComponent
       ],
       providers: [
-        AlbumService,
+        ArtistService,
 
         { provide: Router, useClass: RouterMock },
         MockBackend,
@@ -56,14 +56,13 @@ describe('HomeComponent', () => {
             return new Http(backend, defaultOptions);
           }
         }
-
       ]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomeComponent);
+    fixture = TestBed.createComponent(ArtistHomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
     mockBackend = getTestBed().get(MockBackend);
@@ -73,19 +72,20 @@ describe('HomeComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should handle page clicked', async(() => {
+  it('should handle when page clicked', () => {
     mockBackend.connections.subscribe(
       (connection: MockConnection) => {
-        let albums: Array<Album> = [
-          { album_id: 10, artist_id: 5, cover: null, genre: 'rock', title: 'title' },
-          { album_id: 11, artist_id: 5, cover: null, genre: 'rock', title: 'title2' },
-          { album_id: 12, artist_id: 5, cover: null, genre: 'rock', title: 'title3' }
+        let artists: Array<Artist> = [
+          { artist_id: 1, name: 'Artist Name 1' },
+          { artist_id: 2, name: 'Artist Name 2' },
+          { artist_id: 3, name: 'Artist Name 3' }
         ];
-        connection.mockRespond(new Response(new ResponseOptions({ body: { value: albums } })));
+
+        connection.mockRespond(new Response(new ResponseOptions({ body: { value: artists } })));
       });
 
-    component.onPageClicked(2);
-    expect(component.albums.length).toEqual(3);
-  }));
+    component.onPageClicked(3);
+    expect(component.artists.length).toEqual(3);
+  });
 
 });
