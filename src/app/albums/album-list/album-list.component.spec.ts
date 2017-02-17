@@ -4,6 +4,8 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { AlbumListComponent } from './album-list.component';
+import { AlbumComponent } from '../album/album.component';
+import { Album } from '../shared/album';
 
 describe('AlbumListComponent', () => {
   let component: AlbumListComponent;
@@ -11,9 +13,15 @@ describe('AlbumListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AlbumListComponent ]
+      imports: [
+        // AlbumsModule
+      ],
+      declarations: [
+        AlbumListComponent,
+        AlbumComponent
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -25,4 +33,12 @@ describe('AlbumListComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should raise clicked event', () => {
+    component.albumClicked.subscribe(num => {
+      expect(num).toEqual(5);
+    })
+    component.onAlbumClicked(5);
+  });
+
 });

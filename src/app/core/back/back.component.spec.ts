@@ -1,9 +1,23 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { Location } from '@angular/common';
 
 import { BackComponent } from './back.component';
+
+export class LocationMock {
+  public path: string;
+
+  back() {
+    this.path = 'wentBack';
+  }
+
+  isCurrentPathEqualTo(path: string): boolean {
+    return path === this.path;
+  }
+
+}
 
 describe('BackComponent', () => {
   let component: BackComponent;
@@ -11,9 +25,14 @@ describe('BackComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BackComponent ]
+      declarations: [
+        BackComponent
+      ],
+      providers: [
+        { provide: Location, useClass: LocationMock }
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -25,4 +44,10 @@ describe('BackComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should go back', async(inject([Location], (location: Location) => {
+    component.back();
+    expect(location.isCurrentPathEqualTo('wentBack')).toEqual(true);
+  })));
+
 });

@@ -21,7 +21,9 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.filter = (document.getElementById('search') as HTMLInputElement).value;
+    if (document.getElementById('search') as HTMLInputElement) {
+      this.filter = (document.getElementById('search') as HTMLInputElement).value;
+    }
     this.loadAlbums(1);
   }
 
@@ -39,6 +41,9 @@ export class HomeComponent implements OnInit {
 
   @HostListener('document:keyup', ['$event'])
   onKeyUp(ev: KeyboardEvent) {
+    if (!this.filter) {
+      return;
+    }
     if (ev.srcElement.id === 'search') {
       clearTimeout(this.searchTimeout);
       this.searchTimeout = setTimeout(() => {

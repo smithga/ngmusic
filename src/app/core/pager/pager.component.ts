@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange } from '@angular/core';
 
 @Component({
   selector: 'app-pager',
@@ -13,7 +13,7 @@ export class PagerComponent implements OnInit, OnChanges {
   @Output() pageClicked: EventEmitter<number> = new EventEmitter<number>();
 
   public totalPages = 1;
-  private pageNumbers;
+  public pageNumbers;
 
   constructor() { }
 
@@ -25,8 +25,18 @@ export class PagerComponent implements OnInit, OnChanges {
     this.drawPager();
   }
 
+  setItemCount(itemCount: number) {
+    this.itemCount = itemCount;
+    this.drawPager();
+  }
+
   setPage(page: number) {
-    if (page < 1 || page > this.totalPages) {
+    if (page < 1) {
+      this.currentPage = 1;
+      return;
+    }
+    if (page > this.totalPages) {
+      this.currentPage = this.totalPages;
       return;
     }
     if (page === this.currentPage) {
@@ -37,7 +47,7 @@ export class PagerComponent implements OnInit, OnChanges {
     this.pageClicked.emit(page);
   }
 
-  drawPager() {
+  private drawPager() {
     this.totalPages = Math.ceil(this.itemCount / this.pageSize);
     if (this.totalPages) {
       let startPage: number, endPage: number;

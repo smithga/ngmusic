@@ -19,7 +19,9 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.filter = (document.getElementById('search') as HTMLInputElement).value;
+    if (document.getElementById('search') as HTMLInputElement) {
+      this.filter = (document.getElementById('search') as HTMLInputElement).value;
+    }
     this.loadArtists(1);
   }
 

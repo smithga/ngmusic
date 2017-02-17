@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import {Album} from '../shared/album';
+import { Album } from '../shared/album';
 
 @Component({
   selector: 'app-album',

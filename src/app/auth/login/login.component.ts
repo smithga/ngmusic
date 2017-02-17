@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     if (this.authService.login(this.loginGroup.value.username, this.loginGroup.value.password)) {
       this.router.navigate(['home']);
     } else {
-      this.errorMessage = 'Invalid Username of password!';
+      this.errorMessage = 'Invalid Username or password!';
     }
   }
 
