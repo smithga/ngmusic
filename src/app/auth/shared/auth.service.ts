@@ -29,4 +29,8 @@ export class AuthService {
         window.localStorage.setItem('username', value);
     }
 
+    public clearUsername() {
+        window.localStorage.removeItem('username');
+    }
+
 }

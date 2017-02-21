@@ -2,9 +2,10 @@
 import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-import { RouterModule, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Http, BaseRequestOptions, XHRBackend, Response, ResponseOptions } from '@angular/http';
 import { MockBackend, MockConnection } from '@angular/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { ArtistListComponent } from './artist-list.component';
 import { ArtistComponent } from '../artist/artist.component';
@@ -26,7 +27,7 @@ describe('ArtistListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterModule
+        RouterTestingModule
       ],
       declarations: [
         ArtistListComponent,
@@ -35,7 +36,6 @@ describe('ArtistListComponent', () => {
       providers: [
         ArtistService,
 
-        { provide: Router, useClass: RouterMock },
         MockBackend,
         BaseRequestOptions,
         {
@@ -61,8 +61,9 @@ describe('ArtistListComponent', () => {
   });
 
   it('should handle when artist clicked', async(inject([Router], (router: Router) => {
+    let navigateSpy = spyOn((<any>component).router, 'navigate');
     component.artistClicked(5);
-    expect(router.url).toEqual(['artists', 5]);
+    expect(navigateSpy).toHaveBeenCalledWith(['artists', 5]);
   })));  
 
 });

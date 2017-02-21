@@ -14,7 +14,6 @@ describe('AlbumListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        // AlbumsModule
       ],
       declarations: [
         AlbumListComponent,

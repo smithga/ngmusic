@@ -22,15 +22,6 @@ import { Album } from '../../albums/shared/album';
 import { ArtistService } from '../shared/artist.service';
 import { Artist } from '../shared/artist';
 
-export class RouterMock {
-  public url: string;
-
-  navigateByUrl(url: string) { return url; }
-  navigate(url: string) {
-    this.url = url;
-  }
-}
-
 describe('ArtistDetailsComponent', () => {
   let component: ArtistDetailsComponent;
   let fixture: ComponentFixture<ArtistDetailsComponent>;
@@ -39,10 +30,7 @@ describe('ArtistDetailsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        // RouterTestingModule.withRoutes([
-        //   { path: 'albums/:album_id', component: ArtistDetailsComponent }
-        // ]),
-        RouterModule,
+        RouterTestingModule,
         CoreModule,
         AlbumsModule,
         FormsModule
@@ -56,7 +44,6 @@ describe('ArtistDetailsComponent', () => {
         ArtistService,
 
         { provide: APP_BASE_HREF, useValue: '/' },
-        // { provide: Router, useClass: RouterMock },
         MockBackend,
         BaseRequestOptions,
         {
@@ -111,8 +98,9 @@ describe('ArtistDetailsComponent', () => {
   });
 
   it('should handle when album is clicked', async(inject([Router], (router: Router) => {
-    // component.onAlbumClicked(5);
-    // expect(router.url).toEqual(['albums', 5]);
+    let navigateSpy = spyOn((<any>component).router, 'navigate');
+    component.onAlbumClicked(5);
+    expect(navigateSpy).toHaveBeenCalledWith(['albums', 5]);
   })));
 
 });

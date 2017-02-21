@@ -41,4 +41,14 @@ describe('Auth Service', () => {
         expect(service.authenticated).toEqual(false);
     })));
 
+    it('should get username from localstorage', async(inject([AuthService], (service: AuthService) => {
+        service.username = 'testuser';
+        expect(service.username).toEqual('testuser');
+    })));
+
+    it('should get default username from localstorage', async(inject([AuthService], (service: AuthService) => {
+        service.clearUsername();
+        expect(service.username).toEqual('');
+    })));
+
 });
