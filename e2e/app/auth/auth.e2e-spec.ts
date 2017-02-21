@@ -1,7 +1,7 @@
 import { LoginPage } from './auth.po';
 import { browser } from 'protractor';
 
-describe('music App', function () {
+describe('Auth Module', function () {
   let page: LoginPage;
 
   beforeEach(() => {
@@ -22,8 +22,27 @@ describe('music App', function () {
   it('should display error message on invalid login', () => {
     page.navigateTo();
     page.doInvalidLogin();
-    expect(page.getErrorText()).not.toEqual('Invalid Username or password!');
+    expect(page.getErrorText()).toEqual('Invalid Username or password!');
   });
 
+  it('login button should be disabled if no username provided', () => {
+    page.navigateTo();
+    page.clearUsernameValue();
+    expect(page.loginButton.isEnabled()).toEqual(false);
+  });
+
+  it('login button should be disabled if no password provided', () => {
+    page.navigateTo();
+    page.clearPasswordValue();
+    expect(page.loginButton.isEnabled()).toEqual(false);
+  });
+
+  it('login button should be disabled if bad username', () => {
+    page.navigateTo();
+    page.clearUsernameValue();
+    page.clearPasswordValue();
+    page.doInvalidLoginWithBadUsername();
+    expect(page.loginButton.isEnabled()).toEqual(false);
+  });
 
 });
