@@ -1,5 +1,6 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed, getTestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -27,7 +28,8 @@ describe('AlbumDetailsComponent', () => {
       imports: [
         CoreModule,
         SongsModule,
-        RouterModule
+        RouterModule,
+        FormsModule
       ],
       declarations: [
         AlbumDetailsComponent,

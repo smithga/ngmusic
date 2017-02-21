@@ -1,5 +1,6 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed, getTestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, getTestBed, inject } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
@@ -15,6 +16,7 @@ import { ArtistListComponent } from '../artist-list/artist-list.component';
 import { ArtistComponent } from '../artist/artist.component';
 import { ArtistService } from '../shared/artist.service';
 import { Artist } from '../shared/artist';
+import { SearchService } from '../../core/search/search.service';
 
 export class RouterMock {
   public url: string;
@@ -33,7 +35,8 @@ describe('ArtistHomeComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterModule
+        RouterModule,
+        FormsModule
       ],
       declarations: [
         MainLayoutComponent,
@@ -45,6 +48,7 @@ describe('ArtistHomeComponent', () => {
       ],
       providers: [
         ArtistService,
+        SearchService,
 
         { provide: Router, useClass: RouterMock },
         MockBackend,
@@ -87,5 +91,22 @@ describe('ArtistHomeComponent', () => {
     component.onPageClicked(3);
     expect(component.artists.length).toEqual(3);
   });
+
+  it('should handle filter changed', async(inject([SearchService], (service: SearchService) => {
+    mockBackend.connections.subscribe(
+      (connection: MockConnection) => {
+        let artists: Array<Artist> = [
+          { artist_id: 1, name: 'Artist Name 1' },
+          { artist_id: 2, name: 'Artist Name 2' },
+          { artist_id: 3, name: 'Artist Name 3' }
+        ];
+        connection.mockRespond(new Response(new ResponseOptions({ body: { value: artists } })));
+      });
+
+    component.onPageClicked(2);
+    service.filter = 'test';
+    expect(component.artists.length).toEqual(3);
+  })));
+
 
 });

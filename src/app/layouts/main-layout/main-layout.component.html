@@ -13,7 +13,7 @@
     </ul>
     <div class="navbar-form navbar-right">
       <div class="form-group">
-        <input type="text" id="search" ng-model-options="{debounce: 500}" class="form-control" placeholder="Search">
+        <input type="text" id="search" ng-model-options="{debounce: 500}" [(ngModel)]="searchService.filter" class="form-control" placeholder="Search">
       </div>
       <button type="button" class="btn btn-default" appLogoff>
         <span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logoff

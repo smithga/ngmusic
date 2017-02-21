@@ -1,17 +1,20 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed, getTestBed, inject } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { Http, BaseRequestOptions, XHRBackend, Response, ResponseOptions } from '@angular/http';
 import { MockBackend, MockConnection } from '@angular/http/testing';
-import { APP_BASE_HREF } from '@angular/common';
+import { RouterTestingModule } from '@angular/router/testing';
+import { APP_BASE_HREF, Location } from '@angular/common';
 
 // Modules
 import { AlbumsModule } from '../../albums/albums.module';
 import { CoreModule } from '../../core/core.module';
 import { SongsModule } from '../../songs/songs.module';
 
+import { albumsRouting } from '../../albums/albums.routing';
 import { MainLayoutComponent } from '../../layouts/main-layout/main-layout.component';
 import { HomeComponent } from '../../core/home/home.component';
 import { ArtistDetailsComponent } from './artist-details.component';
@@ -36,10 +39,13 @@ describe('ArtistDetailsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        // RouterTestingModule.withRoutes([
+        //   { path: 'albums/:album_id', component: ArtistDetailsComponent }
+        // ]),
         RouterModule,
         CoreModule,
         AlbumsModule,
-        SongsModule
+        FormsModule
       ],
       declarations: [
         ArtistDetailsComponent,
@@ -104,9 +110,9 @@ describe('ArtistDetailsComponent', () => {
     expect(component.artist.name).toEqual('Artist Name');
   });
 
-  // it('should handle when album is clicked', async(inject([Router], (router: Router) => {
-  //   component.onAlbumClicked(5);
-  //   expect(router.url).toEqual(['albums', 5]);
-  // })));
+  it('should handle when album is clicked', async(inject([Router], (router: Router) => {
+    // component.onAlbumClicked(5);
+    // expect(router.url).toEqual(['albums', 5]);
+  })));
 
 });

@@ -1,18 +1,22 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { RouterModule, Router, ActivatedRoute } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { APP_BASE_HREF } from '@angular/common';
 
+import { SearchService } from '../../core/search/search.service';
 import { MainLayoutComponent } from './main-layout.component';
 
 export class RouterMock {
-    public url: string;
+  public url: string;
 
-    navigateByUrl(url: string) { return url; }
-    navigate(url: string) {
-        this.url = url;
-    }
+  navigateByUrl(url: string) { return url; }
+  navigate(url: string) {
+    this.url = url;
+  }
 }
 
 describe('MainLayoutComponent', () => {
@@ -22,14 +26,16 @@ describe('MainLayoutComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterModule
+        RouterTestingModule,
+        FormsModule,
       ],
       declarations: [
         MainLayoutComponent
       ],
       providers: [
-        { provide: Router, useClass: RouterMock },
-        ActivatedRoute
+        SearchService,
+        
+        { provide: APP_BASE_HREF, useValue: '/' }
       ]
     })
       .compileComponents();
@@ -41,8 +47,8 @@ describe('MainLayoutComponent', () => {
     fixture.detectChanges();
   });
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 
 });

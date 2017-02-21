@@ -1,6 +1,7 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { SearchService } from '../../core/search/search.service';
 import { AlbumService } from '../shared/album.service';
 import { Album } from '../shared/album';
 
@@ -17,14 +18,21 @@ export class AlbumHomeComponent implements OnInit {
 
   constructor(
     public albumService: AlbumService,
-    private router: Router
+    private router: Router,
+    private searchService: SearchService
   ) { }
 
   ngOnInit() {
-    if (document.getElementById('search') as HTMLInputElement) {
-      this.filter = (document.getElementById('search') as HTMLInputElement).value;
-    }
     this.loadAlbums(1);
+
+    // Subscribe to search service filter changes
+    this.searchService.onFilterChanged.subscribe(filter => {
+      clearTimeout(this.searchTimeout);
+      this.searchTimeout = setTimeout(() => {
+        this.filter = filter;
+        this.loadAlbums(1);
+      }, 500);
+    });
   }
 
   onPageClicked(page: number) {
@@ -37,20 +45,6 @@ export class AlbumHomeComponent implements OnInit {
     this.albumService.getAll(this.filter, page, 30).subscribe(result => {
       this.albums = result;
     });
-  }
-
-  @HostListener('document:keyup', ['$event'])
-  onKeyUp(ev: KeyboardEvent) {
-    if (!this.filter) {
-      return;
-    }
-    if (ev.srcElement.id === 'search') {
-      clearTimeout(this.searchTimeout);
-      this.searchTimeout = setTimeout(() => {
-        this.filter = (ev.srcElement as HTMLInputElement).value;
-        this.loadAlbums(1);
-      }, 500);
-    }
   }
 
   onAlbumClicked(albumId: number) {

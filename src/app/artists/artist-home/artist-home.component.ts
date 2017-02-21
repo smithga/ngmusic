@@ -1,5 +1,6 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
+import { SearchService } from '../../core/search/search.service';
 import { ArtistService } from '../shared/artist.service';
 import { Artist } from '../shared/artist';
 
@@ -15,14 +16,21 @@ export class ArtistHomeComponent implements OnInit {
   private searchTimeout;
 
   constructor(
-    public artistService: ArtistService
+    public artistService: ArtistService,
+    public searchService: SearchService
   ) { }
 
   ngOnInit() {
-    if (document.getElementById('search') as HTMLInputElement) {
-      this.filter = (document.getElementById('search') as HTMLInputElement).value;
-    }
     this.loadArtists(1);
+
+    // Subscribe to search service filter changes
+    this.searchService.onFilterChanged.subscribe(filter => {
+      clearTimeout(this.searchTimeout);
+      this.searchTimeout = setTimeout(() => {
+        this.filter = filter;
+        this.loadArtists(1);
+      }, 500);
+    });
   }
 
   onPageClicked(page: number) {
@@ -35,17 +43,6 @@ export class ArtistHomeComponent implements OnInit {
     this.artistService.getAll(this.filter, page, 32).subscribe(result => {
       this.artists = result;
     });
-  }
-
-  @HostListener('document:keyup', ['$event'])
-  onKeyUp(ev: KeyboardEvent) {
-    if (ev.srcElement.id === 'search') {
-      clearTimeout(this.searchTimeout);
-      this.searchTimeout = setTimeout(() => {
-        this.filter = (ev.srcElement as HTMLInputElement).value;
-        this.loadArtists(1);
-      }, 500);
-    }
   }
 
 }
