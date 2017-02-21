@@ -10,7 +10,7 @@ import { SearchService } from '../../core/search/search.service';
 export class MainLayoutComponent implements OnInit {
 
   constructor(
-    private searchService: SearchService
+    public searchService: SearchService
   ) { }
 
   ngOnInit() {

@@ -13,7 +13,7 @@ import { Artist } from './artist';
 
 describe('Artist Service', () => {
     let mockBackend: MockBackend;
-    let artists: Array<Artist>;
+    const artists: Array<Artist> = new Array<Artist>();
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -37,7 +37,7 @@ describe('Artist Service', () => {
         mockBackend = getTestBed().get(MockBackend);
         // Test data
         this.artists = [
-            { artist_id: 5, name: 'AC/DC' }, 
+            { artist_id: 5, name: 'AC/DC' },
             { artist_id: 6, name: 'Muse' },
             { artist_id: 7, name: 'Judas Priest' },
             { artist_id: 8, name: 'Bing Crosby' }
@@ -62,7 +62,7 @@ describe('Artist Service', () => {
     it('should get', async(inject([ArtistService], (service: ArtistService) => {
         mockBackend.connections.subscribe(
             (connection: MockConnection) => {
-                connection.mockRespond(new Response(new ResponseOptions({ body: this.artists.find(x => x.artist_id == 5) })));
+                connection.mockRespond(new Response(new ResponseOptions({ body: this.artists.find(x => x.artist_id === 5) })));
             });
 
         service.get(12).subscribe(result => {

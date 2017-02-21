@@ -62,14 +62,14 @@ describe('LoginComponent', () => {
 
   it('should login correctly', async(inject([Router], (router: Router) => {
     component.loginGroup.value.username = 'a@a.com';
-    component.loginGroup.value.password = "password";
+    component.loginGroup.value.password = 'password';
     component.login();
     expect(router.url).toEqual(['home']);
   })));
 
   it('should fail login on bad credentials', async(inject([Router], (router: Router) => {
     component.loginGroup.value.username = 'bad username';
-    component.loginGroup.value.password = "bad password";
+    component.loginGroup.value.password = 'bad password';
     component.login();
     expect(component.errorMessage).toEqual('Invalid Username or password!');
   })));

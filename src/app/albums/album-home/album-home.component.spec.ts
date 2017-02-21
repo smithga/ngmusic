@@ -80,7 +80,7 @@ describe('AlbumHomeComponent', () => {
   it('should handle page clicked', async(() => {
     mockBackend.connections.subscribe(
       (connection: MockConnection) => {
-        let albums: Array<Album> = [
+        const albums: Array<Album> = [
           { album_id: 10, artist_id: 5, cover: null, genre: 'rock', title: 'title' },
           { album_id: 11, artist_id: 5, cover: null, genre: 'rock', title: 'title2' },
           { album_id: 12, artist_id: 5, cover: null, genre: 'rock', title: 'title3' }
@@ -100,7 +100,7 @@ describe('AlbumHomeComponent', () => {
   it('should handle filter changed', async(inject([SearchService], (service: SearchService) => {
     mockBackend.connections.subscribe(
       (connection: MockConnection) => {
-        let albums: Array<Album> = [
+        const albums: Array<Album> = [
           { album_id: 10, artist_id: 5, cover: null, genre: 'rock', title: 'title' },
           { album_id: 11, artist_id: 5, cover: null, genre: 'rock', title: 'title2' },
           { album_id: 12, artist_id: 5, cover: null, genre: 'rock', title: 'title3' }

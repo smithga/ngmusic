@@ -44,10 +44,11 @@ describe('AuthGuard Service', () => {
         expect(service.canActivate()).toEqual(true);
     }));
 
-    it('should NOT allow activation', inject([AuthGuardService, AuthService, Router], (authGuardService: AuthGuardService, authService: AuthService, router: Router) => {
-        authService.authenticated = false;
-        expect(authGuardService.canActivate()).toEqual(false);
-        expect(router.url).toEqual(['auth/login']);
-    }));
+    it('should NOT allow activation', inject([AuthGuardService, AuthService, Router],
+        (authGuardService: AuthGuardService, authService: AuthService, router: Router) => {
+            authService.authenticated = false;
+            expect(authGuardService.canActivate()).toEqual(false);
+            expect(router.url).toEqual(['auth/login']);
+        }));
 
 });

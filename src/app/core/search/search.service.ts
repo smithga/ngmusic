@@ -2,7 +2,7 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 
 @Injectable()
 export class SearchService {
-    
+
     private _filter: string;
 
     public get filter(): string {

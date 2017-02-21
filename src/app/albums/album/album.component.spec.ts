@@ -36,8 +36,8 @@ describe('AlbumComponent', () => {
   it('should raise clicked event', () => {
     component.albumClicked.subscribe(num => {
       expect(num).toEqual(10);
-    })
-    let album: Album = { album_id: 10, artist_id: 5, cover: null, genre: 'rock', title: 'title' };
+    });
+    const album: Album = { album_id: 10, artist_id: 5, cover: null, genre: 'rock', title: 'title' };
     component.album = album;
     component.clicked();
   });

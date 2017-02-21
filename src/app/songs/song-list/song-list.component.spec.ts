@@ -13,7 +13,7 @@ describe('SongListComponent', () => {
   let mockBackend: MockBackend;
   let component: SongListComponent;
   let fixture: ComponentFixture<SongListComponent>;
-  let songs: Array<Song>;
+  const songs: Array<Song> = new Array<Song>();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -58,7 +58,8 @@ describe('SongListComponent', () => {
         connection.mockRespond(new Response(new ResponseOptions({ body: { value: this.songs.filter(x => x.album_id === 5) } })));
       });
 
-    //GS: This needs to be here instead of in the beforeEach method since we need to inject our mockBackend prior to the component creation.
+    // GS:  This needs to be here instead of in the beforeEach method since we need to
+    //      inject our mockBackend prior to the component creation.
     fixture = TestBed.createComponent(SongListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

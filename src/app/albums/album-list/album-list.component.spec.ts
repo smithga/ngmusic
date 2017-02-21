@@ -36,7 +36,7 @@ describe('AlbumListComponent', () => {
   it('should raise clicked event', () => {
     component.albumClicked.subscribe(num => {
       expect(num).toEqual(5);
-    })
+    });
     component.onAlbumClicked(5);
   });
 

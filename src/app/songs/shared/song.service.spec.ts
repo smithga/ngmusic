@@ -13,7 +13,7 @@ import { Song } from './song';
 
 describe('Song Service', () => {
     let mockBackend: MockBackend;
-    let songs: Array<Song>;
+    const songs: Array<Song> = new Array<Song>();
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({

@@ -72,7 +72,7 @@ describe('ArtistDetailsComponent', () => {
   it('should loadAlbums', () => {
     mockBackend.connections.subscribe(
       (connection: MockConnection) => {
-        let albums: Array<Album> = [
+        const albums: Array<Album> = [
           { album_id: 1, artist_id: 5, cover: null, genre: 'rock', title: 'title' },
           { album_id: 2, artist_id: 5, cover: null, genre: 'rock', title: 'title2' },
           { album_id: 3, artist_id: 5, cover: null, genre: 'rock', title: 'title3' }
@@ -88,7 +88,7 @@ describe('ArtistDetailsComponent', () => {
   it('should loadArtists', () => {
     mockBackend.connections.subscribe(
       (connection: MockConnection) => {
-        let artist: Artist = { artist_id: 2, name: 'Artist Name' };
+        const artist: Artist = { artist_id: 2, name: 'Artist Name' };
 
         connection.mockRespond(new Response(new ResponseOptions({ body: artist })));
       });
@@ -98,7 +98,7 @@ describe('ArtistDetailsComponent', () => {
   });
 
   it('should handle when album is clicked', async(inject([Router], (router: Router) => {
-    let navigateSpy = spyOn((<any>component).router, 'navigate');
+    const navigateSpy = spyOn((<any>component).router, 'navigate');
     component.onAlbumClicked(5);
     expect(navigateSpy).toHaveBeenCalledWith(['albums', 5]);
   })));

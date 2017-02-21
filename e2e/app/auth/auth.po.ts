@@ -1,11 +1,11 @@
 import { browser, element, by } from 'protractor';
 
 export class LoginPage {
-	
+
   // Element Selectors
-	private loginUsername = element(by.name('username'));
-	private loginPassword = element(by.name('password'));
-	private loginButton = element(by.name('btnLogin'));
+  private loginUsername = element(by.name('username'));
+  private loginPassword = element(by.name('password'));
+  private loginButton = element(by.name('btnLogin'));
 
   navigateTo() {
     return browser.get('/auth/login');

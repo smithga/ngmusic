@@ -38,7 +38,7 @@ describe('AlbumDetailsComponent', () => {
       ],
       providers: [
         AlbumService,
-        
+
         { provide: APP_BASE_HREF, useValue: '/' },
         MockBackend,
         BaseRequestOptions,
@@ -68,8 +68,8 @@ describe('AlbumDetailsComponent', () => {
   it('should load album', async(() => {
     mockBackend.connections.subscribe(
       (connection: MockConnection) => {
-        let album: Album = { album_id: 10, artist_id: 5, cover: null, genre: 'rock', title: 'title' };
-        
+        const album: Album = { album_id: 10, artist_id: 5, cover: null, genre: 'rock', title: 'title' };
+
         connection.mockRespond(new Response(new ResponseOptions({ body: album })));
       });
 

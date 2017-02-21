@@ -79,7 +79,7 @@ describe('ArtistHomeComponent', () => {
   it('should handle when page clicked', () => {
     mockBackend.connections.subscribe(
       (connection: MockConnection) => {
-        let artists: Array<Artist> = [
+        const artists: Array<Artist> = [
           { artist_id: 1, name: 'Artist Name 1' },
           { artist_id: 2, name: 'Artist Name 2' },
           { artist_id: 3, name: 'Artist Name 3' }
@@ -95,7 +95,7 @@ describe('ArtistHomeComponent', () => {
   it('should handle filter changed', async(inject([SearchService], (service: SearchService) => {
     mockBackend.connections.subscribe(
       (connection: MockConnection) => {
-        let artists: Array<Artist> = [
+        const artists: Array<Artist> = [
           { artist_id: 1, name: 'Artist Name 1' },
           { artist_id: 2, name: 'Artist Name 2' },
           { artist_id: 3, name: 'Artist Name 3' }

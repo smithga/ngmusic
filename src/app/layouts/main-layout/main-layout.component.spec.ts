@@ -34,7 +34,7 @@ describe('MainLayoutComponent', () => {
       ],
       providers: [
         SearchService,
-        
+
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
     })

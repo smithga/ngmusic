@@ -13,7 +13,7 @@ import { Album } from './album';
 
 describe('Album Service', () => {
     let mockBackend: MockBackend;
-    let albums: Array<Album>;
+    const albums: Array<Album> = new Array<Album>();
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -62,7 +62,7 @@ describe('Album Service', () => {
     it('should get', async(inject([AlbumService], (service: AlbumService) => {
         mockBackend.connections.subscribe(
             (connection: MockConnection) => {
-                connection.mockRespond(new Response(new ResponseOptions({ body: this.albums.find(x => x.album_id == 12) })));
+                connection.mockRespond(new Response(new ResponseOptions({ body: this.albums.find(x => x.album_id === 12) })));
             });
 
         service.get(12).subscribe(result => {
@@ -74,8 +74,7 @@ describe('Album Service', () => {
     it('should getForArtist', async(inject([AlbumService], (service: AlbumService) => {
         mockBackend.connections.subscribe(
             (connection: MockConnection) => {
-                let albums = this.albums.filter(x => x.artist_id == 5);
-                connection.mockRespond(new Response(new ResponseOptions({ body: { value: albums } })));
+                connection.mockRespond(new Response(new ResponseOptions({ body: { value: this.albums.filter(x => x.artist_id === 5) } })));
             });
 
         service.getForArtist(5).subscribe(result => {

@@ -61,9 +61,9 @@ describe('ArtistListComponent', () => {
   });
 
   it('should handle when artist clicked', async(inject([Router], (router: Router) => {
-    let navigateSpy = spyOn((<any>component).router, 'navigate');
+    const navigateSpy = spyOn((<any>component).router, 'navigate');
     component.artistClicked(5);
     expect(navigateSpy).toHaveBeenCalledWith(['artists', 5]);
-  })));  
+  })));
 
 });

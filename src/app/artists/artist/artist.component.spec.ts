@@ -28,7 +28,7 @@ describe('ArtistComponent', () => {
   });
 
   it('should handle when artist is clicked', async(() => {
-    let artist: Artist = { artist_id: 5, name: 'Artist 5' };
+    const artist: Artist = { artist_id: 5, name: 'Artist 5' };
     component.artist = artist;
     component.artistClicked.subscribe(result => {
       expect(result).toEqual(5);
