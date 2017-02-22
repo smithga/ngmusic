@@ -13,6 +13,7 @@ import { APP_BASE_HREF, Location } from '@angular/common';
 import { AlbumsModule } from '../../albums/albums.module';
 import { CoreModule } from '../../core/core.module';
 import { SongsModule } from '../../songs/songs.module';
+import { AuthModule } from '../../auth/auth.module';
 
 import { albumsRouting } from '../../albums/albums.routing';
 import { MainLayoutComponent } from '../../layouts/main-layout/main-layout.component';
@@ -32,8 +33,9 @@ describe('ArtistDetailsComponent', () => {
       imports: [
         RouterTestingModule,
         CoreModule,
+        FormsModule,
         AlbumsModule,
-        FormsModule
+        AuthModule
       ],
       declarations: [
         ArtistDetailsComponent,

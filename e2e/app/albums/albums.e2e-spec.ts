@@ -1,9 +1,4 @@
-// import { LoginPage } from '../auth/auth.po';
 import { AlbumsPage } from './albums.po';
-import { browser } from 'protractor';
-import { inject } from '@angular/core/testing';
-
-import { AuthService } from '../../../src/app/auth/shared/auth.service';
 
 describe('Albums Module', function () {
     let page: AlbumsPage;

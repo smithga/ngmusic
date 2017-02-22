@@ -1,4 +1,4 @@
-import { browser, element, by, protractor } from 'protractor';
+import { element, by } from 'protractor';
 import { LoginPage } from '../auth/auth.po';
 
 export class ArtistsPage {

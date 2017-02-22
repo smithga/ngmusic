@@ -11,6 +11,7 @@ import { APP_BASE_HREF } from '@angular/common';
 // Modules
 import { CoreModule } from '../../core/core.module';
 import { SongsModule } from '../../songs/songs.module';
+import { AuthModule } from '../../auth/auth.module';
 
 import { MainLayoutComponent } from '../../layouts/main-layout/main-layout.component';
 import { HomeComponent } from '../../core/home/home.component';
@@ -27,9 +28,10 @@ describe('AlbumDetailsComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         CoreModule,
-        SongsModule,
         RouterModule,
-        FormsModule
+        FormsModule,
+        SongsModule,
+        AuthModule
       ],
       declarations: [
         AlbumDetailsComponent,
